@@ -1,7 +1,2 @@
-local players = game:GetService("Players")
-
-local function getOwner(player)
-    print(player.UserId)
-end
-
-players.PlayerAdded:Connect(getOwner)
+local plotOwnership = require(script.Parent.PlotOwnership)
+plotOwnership.init()

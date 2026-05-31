@@ -17,7 +17,6 @@ local function setOwner(player)
         return
     end
 
-    print("it works here bro idk what to tell you")
     for _, ownerValue in ipairs(ownerValues) do
         if not ownerValue.Value == 0 then return end
         ownerValue.Value = player.UserId
@@ -26,11 +25,24 @@ local function setOwner(player)
     end
 end
 
+local function removeOwner(player)
+    local leavingId = player.UserId
+
+    for _, ownerValue in ipairs(ownerValues) do
+        if ownerValue.Value == leavingId then 
+            ownerValue.Value = 0
+            player:SetAttribute("hasPlot", false)
+            return
+        end
+    end
+end
+
 function module.init()
-    print("YES")
     players.PlayerAdded:Connect(setOwner)
+
+    players.PlayerRemoving:Connect(removeOwner)
+
     for _, player in ipairs(players:GetPlayers()) do
-        print("Clean up")
         setOwner(player)
     end
 end

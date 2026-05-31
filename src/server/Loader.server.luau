@@ -1,2 +1,3 @@
-local plotOwnership = require(script.Parent.PlotOwnership)
+local plotOwnership = require(script.Parent.plotOwnership)
+
 plotOwnership.init()
